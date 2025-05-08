@@ -1,15 +1,18 @@
 {
-  "name": "test-automation-demo",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "description": "",
-  "devDependencies": {
-    "@playwright/test": "^1.52.0",
-    "@types/node": "^22.15.16"
-  }
+    "name": "test-automation-demo",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "playwright test",
+        "report": "npx playwright show-report"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "description": "",
+    "devDependencies": {
+        "@playwright/test": "^1.52.0",
+        "@types/node": "^22.15.16"
+    }
 }

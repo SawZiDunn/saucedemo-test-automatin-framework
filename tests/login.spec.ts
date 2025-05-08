@@ -1,15 +1,21 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../src/pages/LoginPage";
+import { LoginPage } from "../pages/LoginPage";
+import { config } from "../utils/config";
 
-test.describe("Login Test", () => {
-    test("Successful login with valid credentials", async ({ page }) => {
-        const loginPage = new LoginPage(page);
+test.describe("Login Tests", () => {
+    let loginPage: LoginPage;
+
+    // navigate to loginPage before each test
+    test.beforeEach(async ({ page }) => {
+        loginPage = new LoginPage(page);
         await loginPage.navigate();
+    });
 
+    test("Successful login with valid credentials", async () => {
         // returns inventory page
         const inventoryPage = await loginPage.login(
-            "standard_user",
-            "secret_sauce"
+            config.validUsername,
+            config.validPassword
         );
 
         // assert multiple checks
@@ -22,23 +28,20 @@ test.describe("Login Test", () => {
         expect(currentUrl).toContain("inventory");
     });
 
-    test("Error message with invalid credentials", async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        await loginPage.navigate();
-
+    test("Error message with invalid credentials", async () => {
         await loginPage.login("locked_out_user", "secret_sauce");
 
         // check err msg exists
         expect(await loginPage.isErrorMessageVisible()).toBeTruthy();
+
+        expect(await loginPage.getErrorMessage()).toMatch(/locked out/i);
     });
 
-    test("Error message with wrong password", async ({ page }) => {
-        const loginPage = new LoginPage(page);
-        await loginPage.navigate();
-
-        await loginPage.login("standard_user", "wrong_password");
+    test("Error message with wrong password", async () => {
+        await loginPage.login(config.validUsername, "wrong_password");
 
         // check err msg exists
         expect(await loginPage.isErrorMessageVisible()).toBeTruthy();
+        expect(await loginPage.getErrorMessage()).toMatch(/do not match/i);
     });
 });

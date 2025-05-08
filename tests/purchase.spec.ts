@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../src/pages/LoginPage";
+import { LoginPage } from "../pages/LoginPage";
+import { config } from "../utils/config";
 
 test.describe("End-to-End Purchase Test", () => {
     test("Complete purchase flow from login to order confirmation", async ({
@@ -9,15 +10,14 @@ test.describe("End-to-End Purchase Test", () => {
         await loginPage.navigate();
 
         const inventoryPage = await loginPage.login(
-            "standard_user",
-            "secret_sauce"
+            config.validUsername,
+            config.validPassword
         );
 
         // Login with valid credentials
         expect(inventoryPage.isLoaded()).toBeTruthy();
 
         // Add items to cart
-
         await inventoryPage.addProductToCart("sauce-labs-backpack");
         await inventoryPage.addProductToCart("sauce-labs-bike-light");
 

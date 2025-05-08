@@ -46,4 +46,9 @@ export class LoginPage extends BasePage {
     async isErrorMessageVisible(): Promise<boolean> {
         return await this.isElementVisible(this.errorMessage);
     }
+
+    // get err msg
+    async getErrorMessage(): Promise<string | null> {
+        return await this.getTextContent(this.errorMessage);
+    }
 }
