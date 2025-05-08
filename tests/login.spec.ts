@@ -31,7 +31,7 @@ test.describe("Login Tests", () => {
     test("Error message with invalid credentials", async () => {
         await loginPage.login("locked_out_user", "secret_sauce");
 
-        // check err msg exists
+        // check err msg
         expect(await loginPage.isErrorMessageVisible()).toBeTruthy();
 
         expect(await loginPage.getErrorMessage()).toMatch(/locked out/i);
