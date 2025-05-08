@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
+import { CheckoutInfoPage } from "./CheckoutInfoPage";
 
 export class CartPage extends BasePage {
     private cartItemsList = '[data-test="cart-list"]';
@@ -29,8 +30,8 @@ export class CartPage extends BasePage {
     }
 
     // checkout
-    // async checkout(): Promise<CheckoutInfoPage> {
-    //     await this.page.click(this.checkoutButton);
-    //     return new CheckoutInfoPage(this.page);
-    // }
+    async checkout(): Promise<CheckoutInfoPage> {
+        await this.page.click(this.checkoutButton);
+        return new CheckoutInfoPage(this.page);
+    }
 }
