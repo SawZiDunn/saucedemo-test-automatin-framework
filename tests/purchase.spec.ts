@@ -21,6 +21,9 @@ test.describe("End-to-End Purchase Test", () => {
         await inventoryPage.addProductToCart("sauce-labs-backpack");
         await inventoryPage.addProductToCart("sauce-labs-bike-light");
 
+        // check shopping cart badge is 2
+        expect(await inventoryPage.getShoppingCartBadgeCount()).toBe(2);
+
         const cartPage = await inventoryPage.goToCart();
         // check if cartPage is loaded
         expect(await cartPage.isLoaded()).toBeTruthy();
@@ -43,7 +46,7 @@ test.describe("End-to-End Purchase Test", () => {
         const tax = await checkoutOverviewPage.getTax();
         const total = await checkoutOverviewPage.getTotal();
 
-        // check order summary has values
+        // check order summary has price values
         expect(subtotal).toBeTruthy();
         expect(tax).toBeTruthy();
         expect(total).toBeTruthy();

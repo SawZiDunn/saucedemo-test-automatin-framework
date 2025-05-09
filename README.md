@@ -4,7 +4,7 @@ A [Playwright](https://playwright.dev/) TypeScript automation framework for test
 
 ## Project Structure
 
-The project follows the **Page Object Model** pattern for better maintainability and code organization:
+This project follows the **Page Object Model** pattern for better maintainability and code organization:
 
 ```bash
 test-automation-demo/
@@ -48,18 +48,18 @@ The framework tests these two scenarios:
 
 ## Design Decisions
 
-1. **Page Object Model**: Each page of the application has its own class that encapsulates the page's elements and actions. This makes tests more maintainable as UI changes only require updates in one place.
+1. **Page Object Model**: Each page of the application has its own class that encapsulates the page's elements and actions, and these pages inherits BasePage Class to share similar methods. This makes tests more maintainable as UI changes only require updates in one place.
 
 2. **Fluent Interface Pattern**: Page methods return instances of the next page, allowing for method chaining that follows the user flow (e.g., `loginPage.login(...).addProductToCart(...).goToCart()`).
 
-3. **Separation of Concerns**:
+3. **Separation of Concerns (SOP)**:
 
     - Pages handle element interactions
     - Tests handle assertions and test flow
     - Base class handles common functionality
     - Configuration is separated into utility files
 
-4. **Strong Typing**: TypeScript is used to ensure type safety throughout the framework.
+4. **Strong Typing**: `TypeScript` is used to ensure type safety throughout the framework.
 
 5. **Cross-browser Testing**: Configuration supports **Chrome**, **Firefox**, and **Safari**.
 
@@ -77,8 +77,8 @@ The framework tests these two scenarios:
 1. Clone the repository:
 
 ```bash
-git clone git@github.com:SawZiDunn/test-automatin-demo.git
-cd test-automation-demo
+git clone git@github.com:SawZiDunn/saucedemo-test-automatin-framework.git
+cd saucedemo-test-automatin-framework
 ```
 
 2. Install dependencies:
@@ -98,11 +98,11 @@ npx playwright install
 ### Run all tests
 
 ```bash
-npx playwright test
+npm run test
 
 or
 
-npm run test
+npx playwright test
 ```
 
 ### Run specific test file
@@ -126,11 +126,11 @@ npx playwright test --ui
 ### View test report
 
 ```bash
-npx playwright show-report
+npm run report
 
 or
 
-npm run report
+npx playwright show-report
 ```
 
 ## Test Results

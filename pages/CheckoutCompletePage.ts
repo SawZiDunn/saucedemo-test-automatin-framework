@@ -7,7 +7,6 @@ export class CheckoutCompletePage extends BasePage {
     private completeHeader = '[data-test="complete-header"]';
     private completeText = '[data-test="complete-text"]';
 
-    // Create a new CheckoutCompletePage instance
     constructor(page: Page) {
         super(page);
     }

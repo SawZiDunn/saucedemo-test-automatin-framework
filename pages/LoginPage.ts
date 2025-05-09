@@ -3,12 +3,12 @@ import { BasePage } from "./BasePage";
 import { InventoryPage } from "./InventoryPage";
 
 export class LoginPage extends BasePage {
+    // element selectors
     private usernameInput = '[data-test="username"]';
     private passwordInput = '[data-test="password"]';
     private loginButton = '[data-test="login-button"]';
     private errorMessage = '[data-test="error"]';
 
-    // Create a new LoginPage instance
     constructor(page: Page) {
         super(page);
     }

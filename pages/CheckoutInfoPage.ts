@@ -10,7 +10,6 @@ export class CheckoutInfoPage extends BasePage {
     private continueButton = '[data-test="continue"]';
     private checkoutInfoContainer = '[data-test="checkout-info-container"]';
 
-    // checkoutInfoPage Instance
     constructor(page: Page) {
         super(page);
     }

@@ -3,13 +3,13 @@ import { BasePage } from "./BasePage";
 import { CartPage } from "./CartPage";
 
 export class InventoryPage extends BasePage {
+    // select with data-test attribute instead of class name or element name
     private title = '[data-test="title"]';
     private inventoryContainer = '[data-test="inventory-container"]';
     private shoppingCartLink = '[data-test="shopping-cart-link"]';
-    private inventoryItem = '[data-test="inventory-item"]';
+    private shoppingCartBadge = '[data-test="shopping-cart-badge"]';
     private addToCartButtonPrefix = '[data-test="add-to-cart-';
 
-    // creates new inventory page instance
     constructor(page: Page) {
         super(page);
     }
@@ -35,9 +35,13 @@ export class InventoryPage extends BasePage {
         await this.page.click(addToCartButton);
     }
 
-    // Get the number of items in the inventory
-    async getInventoryItemCount(): Promise<number> {
-        return await this.page.locator(this.inventoryItem).count();
+    // get item count from shoppingCartBadge
+    async getShoppingCartBadgeCount(): Promise<number> {
+        let count: string | null = await this.getTextContent(
+            this.shoppingCartBadge
+        );
+
+        return count ? parseInt(count) : 0;
     }
 
     // Navigate to the shopping cart page

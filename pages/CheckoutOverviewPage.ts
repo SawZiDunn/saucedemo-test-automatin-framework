@@ -10,7 +10,6 @@ export class CheckoutOverviewPage extends BasePage {
     private finishButton = '[data-test="finish"]';
     private inventoryItem = '[data-test="inventory-item"]';
 
-    // Create a new CheckoutOverviewPage instance
     constructor(page: Page) {
         super(page);
     }
